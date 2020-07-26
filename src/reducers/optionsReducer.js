@@ -11,10 +11,11 @@ export const initialState = {
 
 export const optionsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'TEST':
+        case 'NEW_OPTION':
             return {
                 ...state,
-                car: action.payload
+                features: state.features.concat(action.payload),
+                additionalPrice: (state.additionalPrice + action.payload.price)
             }
             default:
                 return state;
