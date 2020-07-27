@@ -16,9 +16,32 @@ export const optionsReducer = (state = initialState, action) => {
                 ...state,
                 features: state.features.concat(action.payload),
                 additionalPrice: (state.additionalPrice + action.payload.price)
+            };
+
+        case 'OLD_OPTION':
+          return {
+            ...state,
+            features: state.features.map(item => {
+              if (item.id === action.payload) {
+                return {
+                  ...state,
+                  removed: !item.removed
+                } 
+              }
+              return state
+            })
+          };
+
+          case 'DELETE_OPTION':
+            return {
+              ...state,
+              features: state.features.filter(item => {
+                return !item.removed
+              }),
+              additionalPrice: (state.additionalPrice - action.payload.price)
             }
-            default:
-                return state;
+
+        default:
+          return state;
     }
- 
-}
+};
