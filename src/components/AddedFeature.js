@@ -5,7 +5,7 @@ import {removeOption, purgeOption} from '../actions/optionsActions';
 const AddedFeature = props => {
   console.log(props)
   return (
-    <li>
+    <li key={props.feature.id}>
       {/* Add an onClick to run a function to remove a feature */}
       <button className="button"
         onClick={ () => {props.removeOption(props.feature.id);
